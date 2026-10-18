@@ -1,0 +1,16 @@
+[package]
+name = "tape-machine-vst3"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "tape_machine_vst3"
+crate-type = ["cdylib", "lib"]
+
+[dependencies]
+nih_plug = { git = "https://github.com/robbert-vdh/nih-plug.git", features = ["assert_process_allocs"] }
+nih_plug_egui = { git = "https://github.com/robbert-vdh/nih-plug.git" }
+
+[profile.release]
+lto = "thin"
+strip = true
