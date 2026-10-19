@@ -1,0 +1,19 @@
+[package]
+name = "tape-machine-vst3"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "tape_machine_vst3"
+crate-type = ["cdylib", "lib"]
+
+[dependencies]
+nih_plug = { git = "https://github.com/robbert-vdh/nih-plug.git", features = ["assert_process_allocs"] }
+nih_plug_egui = { git = "https://github.com/robbert-vdh/nih-plug.git" }
+# Only for decoding the embedded panel-background PNGs (assets/backgrounds/*.png) into egui
+# textures at startup; png-only, no codecs or dynamic-loading machinery we don't use.
+image = { version = "0.25", default-features = false, features = ["png"] }
+
+[profile.release]
+lto = "thin"
+strip = true
